@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    drivzer-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/invoicedb?useUnicode=true&characterEncoding=utf-8&userSSL=true&serverTimezone=UTC
+    username: SYSADM
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
