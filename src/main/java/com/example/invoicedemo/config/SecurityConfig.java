@@ -1,4 +1,4 @@
-package com.example.invoicedemo.Config;
+package com.example.invoicedemo.config;
 
 
 
