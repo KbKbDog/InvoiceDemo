@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.List;
 
 @SpringBootTest
-public class MaperTest {
+public class MapperTest {
 
     @Autowired
     private UserRepository userRepository;
