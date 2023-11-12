@@ -1,5 +1,6 @@
 package com.example.invoicedemo.controller;
 
+import com.example.invoicedemo.dao.UserRepository;
 import com.example.invoicedemo.domain.ResponseResult;
 import com.example.invoicedemo.domain.User;
 import com.example.invoicedemo.service.LoginService;
@@ -14,10 +15,13 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    UserRepository userRepository;
     @PostMapping("/user/login")
     public ResponseResult login(@RequestBody User user){
         //登录
-        return loginService.login(user);
+       return loginService.login(user);
     }
 
     @PostMapping("/user/logout")
