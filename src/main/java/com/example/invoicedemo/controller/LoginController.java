@@ -25,7 +25,7 @@ public class LoginController {
     }
 
     @PostMapping("/user/logout")
-    public ResponseResult logiout(){
+    public ResponseResult logout(){
         //登录
         return loginService.logout();
     }
