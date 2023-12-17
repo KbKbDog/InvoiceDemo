@@ -1,5 +1,6 @@
 package com.example.invoicedemo.domain;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

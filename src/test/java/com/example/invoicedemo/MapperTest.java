@@ -20,7 +20,7 @@ public class MapperTest {
     @Test
     public void TestBCryptPasswordEncoder(){
         BCryptPasswordEncoder passwordEncoder =new BCryptPasswordEncoder();
-        String encode=passwordEncoder.encode("123456789");
+        String encode=passwordEncoder.encode("root");
         try {
             Claims claims = JwtUtil.parseJWT(encode);
             System.out.println(claims.getSubject());
@@ -28,7 +28,7 @@ public class MapperTest {
             e.printStackTrace();
             throw new RuntimeException("token非法");
         }
-        //System.out.println(encode2);
+        System.out.println(encode);
     }
     @Test
     public void testUserMaper(){

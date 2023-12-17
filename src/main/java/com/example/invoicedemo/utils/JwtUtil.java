@@ -78,7 +78,7 @@ public class JwtUtil {
        String jwt = createJWT("1");
         String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiNTViNDM4Y2M4MWY0OGNlODMzNzQwYzViZjUyN2I1NSIsInN1YiI6Imludm9pY2UiLCJpc3MiOiJzZyIsImlhdCI6MTcwMDk2ODk1MCwiZXhwIjoxNzAwOTcyNTUwfQ.Pi6POCZmzH4lis8q30J2D9yKdB87OT0Epw15wnpe0js";
 //        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjYWM2ZDVhZi1mNjVlLTQ0MDAtYjcxMi0zYWEwOGIyOTIwYjQiLCJzdWIiOiJzZyIsImlzcyI6InNnIiwiaWF0IjoxNjM4MTA2NzEyLCJleHAiOjE2MzgxMTAzMTJ9.JVsSbkP94wuczb4QryQbAke3ysBDIL5ou8fWsbt_ebg";
-        Claims claims = parseJWT(token);
+        //Claims claims = parseJWT(token);
         System.out.println(jwt);
     }
 
