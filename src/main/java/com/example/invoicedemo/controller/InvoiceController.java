@@ -1,18 +1,18 @@
 package com.example.invoicedemo.controller;
 
 import com.example.invoicedemo.dao.InvoiceRepository;
-import com.example.invoicedemo.dao.UserRepository;
 import com.example.invoicedemo.domain.Invoice;
 import com.example.invoicedemo.domain.ResponseResult;
-import com.example.invoicedemo.domain.User;
 import com.example.invoicedemo.service.InvoiceService;
-import jakarta.annotation.Generated;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.io.IOException;
 
 @RestController
 public class InvoiceController {
@@ -24,13 +24,19 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @PostMapping("/getList")
-    public ResponseResult getList(){
-        return new ResponseResult(200,invoiceRepository.findAll());
+    public ResponseResult getList() {
+        return new ResponseResult(200, invoiceRepository.findAll());
     }
 
     @GetMapping("/addList")
-    public ResponseResult addList(@RequestBody Invoice invoice){
+    public ResponseResult addList(@RequestBody Invoice invoice) {
         return invoiceService.addList(invoice);
     }
+
+    @GetMapping("/download")
+    public ResponseResult download(HttpServletResponse response) throws IOException {
+        return invoiceService.download(response);
+    }
+
 }
 

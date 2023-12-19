@@ -22,6 +22,7 @@ public class Invoice {
     /**
      * 主键
      */
+    @ExcelProperty(value = "id")
     @Id
     private int id;
     /**
@@ -33,7 +34,7 @@ public class Invoice {
      * 上车时间
      */
     @Column(name = "boarding_time")
-    private LocalDateTime nickName;
+    private LocalDateTime boardingTime;
     /**
      * 下车时间
      */
