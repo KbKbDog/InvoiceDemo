@@ -38,17 +38,15 @@ public class InvoiceServieImpl implements InvoiceService {
         response.setCharacterEncoding("utf-8");
         FileExistsPropertyDefiner TestFileUtil = new FileExistsPropertyDefiner();
         TestFileUtil.setPath("C:\\Users\\10515\\Documents");
-        String fileName = TestFileUtil.getPath() + File.separator + "市内交通费.xlsx";
-        String fileNameEncode = URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
-        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        String fileNameEncode = URLEncoder.encode("市内交通费", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileNameEncode + ".xlsx");
 
         List<Invoice> invoiceList = invoiceRepository.findAll();
 
         //模板文件路径
         String templateFileName =
                 TestFileUtil.getPath() + File.separator + "市内交通费-模板2.xlsx";
-
-        try (ExcelWriter excelWriter = EasyExcel.write(fileName).withTemplate(templateFileName).build()) {
+        try (ExcelWriter excelWriter = EasyExcel.write(response.getOutputStream()).withTemplate(templateFileName).build()) {
             WriteSheet writeSheet = EasyExcel.writerSheet().build();
             FillConfig fillConfig = FillConfig.builder().forceNewRow(Boolean.FALSE).build();
             excelWriter.fill(invoiceList, fillConfig, writeSheet);

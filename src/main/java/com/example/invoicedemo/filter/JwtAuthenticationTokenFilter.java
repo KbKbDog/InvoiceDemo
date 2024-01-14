@@ -42,16 +42,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             userid = claims.getSubject();
 
         } catch (ExpiredJwtException e) {
-            //Token过期
-            claims = e.getClaims();
-            userid = claims.getSubject();
+//            //Token过期
+//            e.printStackTrace();
+//            throw new RuntimeException("Token过期");
 
-            Optional<User> loginUser = userRepository.findById(Integer.valueOf(userid));
-            if (loginUser.isEmpty()) {
-                throw new RuntimeException("用户未登录");
-            }
-            //放行
             filterChain.doFilter(request, response);
+            return;
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("token非法");

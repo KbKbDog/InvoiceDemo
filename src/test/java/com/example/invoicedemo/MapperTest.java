@@ -1,7 +1,7 @@
 package com.example.invoicedemo;
 
-import com.example.invoicedemo.dao.UserRepository;
-import com.example.invoicedemo.domain.User;
+import com.example.invoicedemo.dao.InvoiceRepository;
+import com.example.invoicedemo.domain.Invoice;
 import com.example.invoicedemo.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.Test;
@@ -15,12 +15,12 @@ import java.util.List;
 public class MapperTest {
 
     @Autowired
-    private UserRepository userRepository;
+    private InvoiceRepository invoiceRepository;
 
     @Test
-    public void TestBCryptPasswordEncoder(){
-        BCryptPasswordEncoder passwordEncoder =new BCryptPasswordEncoder();
-        String encode=passwordEncoder.encode("root");
+    public void TestBCryptPasswordEncoder() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encode = passwordEncoder.encode("root");
         try {
             Claims claims = JwtUtil.parseJWT(encode);
             System.out.println(claims.getSubject());
@@ -30,11 +30,10 @@ public class MapperTest {
         }
         System.out.println(encode);
     }
+
     @Test
-    public void testUserMaper(){
-        List<User> users=userRepository.findAll();
-        System.out.println(users);
+    public void testSInvoiceMaper() {
+        List<Invoice> invoiceList = invoiceRepository.findAll();
+        System.out.println(invoiceList);
     }
-
-
 }

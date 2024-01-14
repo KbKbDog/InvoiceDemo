@@ -1,14 +1,50 @@
 server:
   port: 8081
 spring:
+  #  datasource:
+  #    url: jdbc:h2:file:./invoicedb
+  #    driver-class-name: org.h2.Driver
+  #    username: SYSADM
+  #    password: password
+  #  h2:
+  #    console:
+  #      path: /h2-console
+  #      enabled: true
+  #      settings:
+  #        web-allow-others: true
+  #        trace: true
   datasource:
-    drivzer-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/invoicedb?useUnicode=true&characterEncoding=utf-8&userSSL=true&serverTimezone=UTC
     username: SYSADM
     password: password
   jpa:
-    hibernate:
-      ddl-auto: validate
+    show-sql: true
+    properties:
+      #      hibernate:
+      #        database: h2
+      #        database-platform: org.hibernate.dialect.H2Dialect
       database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
-    show-sql: true
+    hibernate:
+      ddl-auto: validate
+#      ddl-auto: update
+logging:
+  file:
+    # 输出的log文件名
+    name: slf4j-test
+    # 输出的文件的路径
+    path: ./logs
+  level:
+    # 输出级别
+    root: info
+    # 特定的mapper下的输出级别
+    com.example.demo.mapper: debug
+  # xml配置文件
+  config: classpath:logback-spring.xml
+  logback:
+    rollingpolicy:
+      # 限制日志文件的大小
+      max-file-size: 10MB
+      # 日志的保存天数
+      max-history: 7

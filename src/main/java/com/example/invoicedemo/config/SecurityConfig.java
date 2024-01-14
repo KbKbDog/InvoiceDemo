@@ -20,19 +20,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Bean
-    public static PasswordEncoder passwordEncoder(){
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http     //关闭csrf
                 .csrf(AbstractHttpConfigurer::disable)
                 //不通过Session获取SecurityContext
-                .sessionManagement((session)->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .headers((header) -> header.frameOptions((option) -> option.sameOrigin()))
                 // 对于登录接口 允许匿名访问
-                .authorizeRequests((authorize) -> authorize.requestMatchers("/user/login").anonymous()
+                // 追加H2数据库管理页面任意访问
+                .authorizeRequests((authorize) -> authorize.requestMatchers("/user/login").anonymous().requestMatchers("/h2-console/**").permitAll()
                         // 除上面外的所有请求全部需要鉴权认证
                         .anyRequest().authenticated());
         //指定过滤器前添加自己的过滤器
